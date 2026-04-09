@@ -8,7 +8,7 @@ A team collaboration tool with workspaces, kanban boards, member management, Str
 |---|-----------|--------|
 | M1 | Foundation & Auth | Done |
 | M2 | Workspaces & Boards | Done |
-| M3 | Kanban Board | Not Started |
+| M3 | Kanban Board | Done |
 | M4 | Team & User Management | Not Started |
 | M5 | Subscriptions (Stripe) | Not Started |
 | M6 | AI Features | Not Started |
@@ -70,14 +70,18 @@ A team collaboration tool with workspaces, kanban boards, member management, Str
 **Tech:** React (Client Components), drag-and-drop library TBD, Supabase realtime (optional)
 
 ### Deliverables
-- [ ] Kanban layout: columns with cards
-- [ ] Drag-and-drop: move cards between columns and reorder within a column
-- [ ] Optimistic UI updates
-- [ ] Card detail view: title, description, assignee, priority, due date, labels
-- [ ] Add, edit, delete cards and columns
+- [x] Kanban layout: columns with cards
+- [x] Drag-and-drop: move cards between columns and reorder within a column
+- [x] Optimistic UI updates
+- [x] Card detail view: title, description, priority, due date
+- [x] Add, edit, delete cards and columns
 
 **Notes:**
-> _Library choice (e.g., @dnd-kit/core vs native HTML5), reordering strategy_
+- Using `@dnd-kit/core` + `@dnd-kit/sortable` for drag-and-drop
+- `useDroppable` is from `@dnd-kit/core`, not `@dnd-kit/sortable`
+- Drag state is fully optimistic — DB write (reorderCards) fires after drag ends
+- Cards move between columns via `onDragOver` (column_id update) + `onDragEnd` (position reorder)
+- Column drop zones registered with `useDroppable({ id: column.id })`
 
 ---
 
