@@ -7,7 +7,7 @@ A team collaboration tool with workspaces, kanban boards, member management, Str
 | # | Milestone | Status |
 |---|-----------|--------|
 | M1 | Foundation & Auth | Done |
-| M2 | Workspaces & Boards | Not Started |
+| M2 | Workspaces & Boards | Done |
 | M3 | Kanban Board | Not Started |
 | M4 | Team & User Management | Not Started |
 | M5 | Subscriptions (Stripe) | Not Started |
@@ -49,14 +49,17 @@ A team collaboration tool with workspaces, kanban boards, member management, Str
 **Tech:** Supabase (tables + RLS), Next.js Server Components, Route Handlers
 
 ### Deliverables
-- [ ] DB schema: `workspaces`, `boards`, `columns`, `cards`, `workspace_members`
-- [ ] Row-Level Security policies on all tables
-- [ ] Workspace list and create/edit/delete
-- [ ] Board list per workspace
-- [ ] Board create/edit/delete
+- [x] DB schema: `workspaces`, `boards`, `columns`, `cards`, `workspace_members`
+- [x] Row-Level Security policies on all tables
+- [x] Workspace list and create/edit/delete
+- [x] Board list per workspace
+- [x] Board create/edit/delete
 
 **Notes:**
-> _Record schema decisions, RLS patterns, migration notes_
+- Shadcn UI here uses `@base-ui/react` — no `asChild` prop; apply `buttonVariants` directly to trigger elements
+- `DialogTrigger`, `DialogClose`, `DropdownMenuTrigger` all render as `<button>` by default in base-ui
+- Workspace switcher in sidebar reads `workspaceId` from URL params via `useParams()`
+- Board CRUD: `createBoard`/`updateBoard` use `useActionState`; `deleteBoard` is a direct async call
 
 ---
 
