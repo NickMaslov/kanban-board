@@ -6,7 +6,7 @@ A team collaboration tool with workspaces, kanban boards, member management, Str
 
 | # | Milestone | Status |
 |---|-----------|--------|
-| M1 | Foundation & Auth | Not Started |
+| M1 | Foundation & Auth | Done |
 | M2 | Workspaces & Boards | Not Started |
 | M3 | Kanban Board | Not Started |
 | M4 | Team & User Management | Not Started |
@@ -23,17 +23,22 @@ A team collaboration tool with workspaces, kanban boards, member management, Str
 **Tech:** Supabase (Docker), Shadcn UI, Tailwind 4, Resend
 
 ### Deliverables
-- [ ] Supabase running locally via Docker (`supabase start`)
-- [ ] `@supabase/ssr` configured for Next.js App Router (server + client helpers)
-- [ ] Shadcn UI initialized, dark mode default with light toggle
-- [ ] Auth pages: sign up, log in, log out, forgot password
-- [ ] Middleware to protect authenticated routes
-- [ ] Onboarding flow: create or join a workspace after first login
-- [ ] Welcome email sent via Resend on signup
-- [ ] Root layout with sidebar nav and header shell
+- [x] Supabase running locally via Docker (`supabase start`)
+- [x] `@supabase/ssr` configured for Next.js App Router (server + client helpers)
+- [x] Shadcn UI initialized, dark mode default with light toggle
+- [x] Auth pages: sign up, log in, log out, forgot password
+- [x] Middleware to protect authenticated routes (`proxy.ts`)
+- [x] Onboarding flow: create workspace after first login
+- [x] Welcome email sent via Resend on signup
+- [x] Root layout with sidebar nav and header shell
 
 **Notes:**
-> _Record decisions here as they're made (e.g., auth strategy, email templates)_
+- `proxy.ts` is Next.js 16's rename of `middleware.ts`; used for session refresh + route protection
+- Auth keys: Supabase CLI v2.84+ uses "Publishable" (anon) and "Secret" (service_role) key names
+- Shadcn CLI v4.2.0 detected Tailwind v4 automatically; no `tailwind.config.js` needed
+- `useActionState` actions require `(prevState, formData)` signature (React 19 requirement)
+- Full DB schema with RLS in `supabase/migrations/20260409180442_initial_schema.sql`
+- Add real Resend API key to `.env.local` before going live
 
 ---
 
