@@ -9,7 +9,7 @@ A team collaboration tool with workspaces, kanban boards, member management, Str
 | M1 | Foundation & Auth | Done |
 | M2 | Workspaces & Boards | Done |
 | M3 | Kanban Board | Done |
-| M4 | Team & User Management | Not Started |
+| M4 | Team & User Management | Done |
 | M5 | Subscriptions (Stripe) | Not Started |
 | M6 | AI Features | Not Started |
 | M7 | Polish & Production | Not Started |
@@ -92,14 +92,17 @@ A team collaboration tool with workspaces, kanban boards, member management, Str
 **Tech:** Resend (invite emails), Supabase (workspace_members), Shadcn UI
 
 ### Deliverables
-- [ ] Invite member by email (sends invite link via Resend)
-- [ ] Accept invite flow
-- [ ] Roles: Owner, Admin, Member (enforced via RLS)
-- [ ] Member list page: view, change role, remove member
-- [ ] User profile settings (name, avatar)
+- [x] Invite member by email (sends invite link via Resend)
+- [x] Accept invite flow
+- [x] Roles: Owner, Admin, Member (enforced via RLS)
+- [x] Member list page: view, change role, remove member
+- [x] User profile settings (name)
 
 **Notes:**
-> _Invite token strategy, role enforcement details_
+- Token-based invites stored in `workspace_invites`; `/invite/[token]` is public (added to proxy allowlist)
+- Auto-accepts invite if user is already logged in
+- `cancelInvite`, `changeMemberRole`, `removeMember` all in `app/actions/team.ts`
+- Settings routes: `/workspace/[workspaceId]/settings` (profile) and `/settings/team` (members)
 
 ---
 

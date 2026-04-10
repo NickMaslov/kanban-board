@@ -35,7 +35,8 @@ export async function proxy(request: NextRequest) {
   const isAuthRoute = pathname.startsWith('/login') ||
     pathname.startsWith('/signup') ||
     pathname.startsWith('/forgot-password') ||
-    pathname.startsWith('/auth')
+    pathname.startsWith('/auth') ||
+    pathname.startsWith('/invite')
 
   // Redirect unauthenticated users away from protected routes
   if (!user && !isAuthRoute) {
